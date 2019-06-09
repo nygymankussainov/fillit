@@ -1,3 +1,0 @@
-#!/bin/sh
-./random_tetriminos.py $2
-time $1 ttmnfile
