@@ -6,31 +6,28 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 16:24:15 by deladia           #+#    #+#             */
-/*   Updated: 2019/05/30 19:56:24 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/06/09 14:10:52 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_sqrt1(int nb)
+int		ft_sqrt_mod(int nbr)
 {
 	int	i;
 
 	i = 1;
-	while (i * i < nb)
+	while (i * i < nbr)
 		i++;
 	return (i);
 }
 
-t_list_fig	*create_list(t_list_fig **list, t_fig **hash)
+void	create_list(t_list_fig **list, t_fig **hash)
 {
-	if (hash == NULL)
+	if (!hash)
 	{
 		if (!(*list = (t_list_fig *)ft_memalloc(sizeof(t_list_fig))))
-			return (0);
-		(*list)->figure = NULL;
-		(*list)->next = NULL;
-		(*list)->prev = NULL;
+			return ;
 	}
 	else
 	{
@@ -41,94 +38,57 @@ t_list_fig	*create_list(t_list_fig **list, t_fig **hash)
 			(*list)->next = (t_list_fig *)ft_memalloc(sizeof(t_list_fig));
 			(*list)->next->figure = *hash;
 			(*list)->next->prev = *list;
-			(*list)->next->next = NULL;
 			(*list) = (*list)->next;
 		}
 	}
-	return (*list);
 }
 
-int				ft_read_2(int fd, t_list_fig **list, t_map **map, char letter)
+int		ft_read(int fd, t_struct **str, t_list_matrix **stack)
 {
-	char		buf[22];
-	size_t		cnt_fig;
-	int			ret;
-	int			ret_pre;
-	t_map		*matrix;
-	int 		m;
+	t_vars			v;
+	t_temp			temp;
 
-	cnt_fig = 0;
-	matrix = NULL;
-	while ((ret = read(fd, buf, 21)) >= 20)
+	v.letter = 'A';
+	temp.cnt_fig = 0;
+	temp.flag = 0;
+	while ((v.ret = read(fd, v.buf, 21)) >= 20)
 	{
-		buf[ret] = '\0';
-		if (ft_valid_1(buf) == -1)
+		v.buf[v.ret] = '\0';
+		if (valid_1(v.buf) == -1 || valid_2(v.buf, v.ret, temp.flag) == -1)
 			return (-1);
-		if (ft_valid_2(buf) == -1)
-			return (-1);
-		ret_pre = ret;
-		store_fig(list, buf, letter);
-		cnt_fig++;
-		letter++;
+		v.ret_pre = v.ret;
+		store_fig(&(*str)->list, v.buf, v.letter);
+		temp.cnt_fig++;
+		v.letter++;
 	}
-	if (ret != 0 || ret_pre != 20)
+	if (v.ret != 0 || v.ret_pre != 20)
 		return (-1);
-	while ((*list)->prev)
-		*list = (*list)->prev;
-	while (*list)
-	{
-		*map = create_map(ft_sqrt1(4 * cnt_fig));
-		matrix = insert_fig(*map, matrix, *list, ft_sqrt1(4 * cnt_fig));
-		if (!(*list)->next)
-			break ;
-		*list = (*list)->next;
-	}
-	m = find_col(matrix);
-	matrix = find_one(matrix, m);
-	delete_row(matrix);
-	*map = fillmap2(*map, matrix, m);
-	print(*map, 4);
-	printf("%d\n", m);
+	(*str)->side = ft_sqrt_mod(4 * temp.cnt_fig);
+	create_map(&(*str)->map, (*str)->side);
+	(*str)->side = create_matrix(str);
+	force(str, stack, temp);
 	return (0);
 }
 
-int				ft_read_1(int fd, t_list_fig **list, t_map **map)
+int		main(int argc, char **argv)
 {
-	char		letter;
+	int				fd;
+	t_struct		*str;
+	t_list_matrix	*stack;
 
-	letter = 'A';
-	create_list(list, NULL);
-	if (ft_read_2(fd, list, map, letter) < 0)
-		return (-1);
-	return (0);
-}
-
-int			main(/* int argc, char **argv */)
-{
-	int			fd;
-	t_list_fig	*list;
-	t_map		*map;
-	// if (argc == 2)
-	// {
-		if ((fd = open("data", O_RDONLY)) < 0)
+	str = (t_struct *)ft_memalloc(sizeof(t_struct));
+	create_list(&str->list, NULL);
+	if (argc == 2)
+	{
+		if ((fd = open(argv[1], O_RDONLY)) < 0)
 			return (-1);
-		while (ft_read_1(fd, &list, &map) < 0)
+		if (ft_read(fd, &str, &stack) < 0)
 		{
-			ft_putstr("error");
+			ft_putstr("error\n");
 			return (-1);
 		}
-		// else
-		// {
-			//ft_fillmap(&map, &list);
-			// add_col(map);
-			// add_row(map);
-			// expand_map(&map);
-			// ft_fillmap(&map, &list);
-			// ft_delete_fig(&map, &list);
-			// print(map, 3);
-		// }	
-	// }
-	// else
-	// 	ft_putstr("usage: ./fillit sample_file");
+	}
+	else
+		ft_putstr("usage: ./fillit sample_file\n");
 	return (0);
 }

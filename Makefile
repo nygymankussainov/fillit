@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/05/30 19:36:47 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/06/09 14:33:51 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,24 +14,36 @@
 
 NAME = fillit
 
-INCLUDES = -I ./ -I ./libft_v2.0/
+CC = gcc
 
-SRC = fillit.c map.c fillmap.c print.c validation.c link_hash.c store_fig.c expand_map.c insert_fig.c fillmap2.c delete_row.c
+CFLAGS = -Wall -Wextra -Werror
 
-OBJECTS = $(SRC:.c=.o)
+LIB_FOLDER = libft
 
-LIB = -L ./libft_v2.0/ -lft
+LIB = ./$(LIB_FOLDER)
 
-LIB_FOLDER = libft_v2.0/
+INCLUDES = -I./$(LIB_FOLDER)
 
-all:
+SRC = fillit.c create_map.c fillmap.c print_map.c validation.c link_hash.c store_fig.c \
+		expand_map.c insert_fig.c fillmap2.c force.c delete_row.c stack.c ft_delete_fig.c insert_matrix.c
+
+OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
 	@make -C $(LIB_FOLDER)
-	gcc -Wall -Wextra -Werror $(SRC) $(LIB) $(INCLUDES) -o $(NAME) -g
+	$(CC) $(CFLAGS) -L $(LIB) -lft $(INCLUDES) -o $@ $^ -ggdb3
 
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $< $(CFLAGS) $(INCLUDES) -ggdb3
+		
 clean:
 	@make clean -C $(LIB_FOLDER)
+	@/bin/rm -f $(OBJ)
 
 fclean:	clean
+	@make clean
 	@/bin/rm -f $(NAME)
 	@make fclean -C $(LIB_FOLDER)
 
