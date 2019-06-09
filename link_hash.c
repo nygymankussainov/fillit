@@ -32,7 +32,7 @@ void		link_hash_plus(t_fig **l1, t_fig **l2)
 	{
 		(*l1)->right = (*l2);
 		(*l2)->left = (*l1);
-	}	
+	}
 }
 
 void		link_hash_minus(t_fig **l1, t_fig **l2)
@@ -51,10 +51,10 @@ void		link_hash_minus(t_fig **l1, t_fig **l2)
 
 void		link_hash(t_fig **fig)
 {
-	t_fig	*h1;
-	t_fig	*h2;
-	t_fig	*h3;
-	t_fig	*h4;
+	t_fig *h1;
+	t_fig *h2;
+	t_fig *h3;
+	t_fig *h4;
 
 	h1 = *fig;
 	h2 = (*fig)->right;
