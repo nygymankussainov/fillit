@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deladia <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 20:39:19 by deladia           #+#    #+#             */
-/*   Updated: 2019/06/07 20:39:23 by deladia          ###   ########.fr       */
+/*   Updated: 2019/06/09 16:25:54 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,18 @@ t_map			*restore_row(t_list_matrix *stack)
 
 t_map			*restore_all_in_stack(t_list_matrix **stack, int restore)
 {
-	t_map	*matrix;
+	t_map			*matrix;
+	t_list_matrix	*tmp;
 
 	while (restore--)
 	{
 		matrix = restore_row(*stack);
 		if (!(*stack)->next)
 			break ;
+		tmp = *stack;
 		*stack = (*stack)->next;
+		free(tmp);
+		tmp = NULL;
 	}
 	return (matrix);
 }
