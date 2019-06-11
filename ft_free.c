@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:24:18 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/06/11 16:36:38 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:12:45 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ void	ft_free_right(t_map **matrix)
 			tmp = *matrix;
 			if (!(*matrix)->right)
 			{
-				free(tmp);
-				tmp = NULL;
 				if (!(*matrix)->down)
 				{
+					free(tmp);
+					tmp = NULL;
 					*matrix = NULL;
 					return ;
 				}
 				*matrix = (*matrix)->down;
+				free(tmp);
+				tmp = NULL;
 				break ;
 			}
 			*matrix = (*matrix)->right;
@@ -48,14 +50,16 @@ void	ft_free_left(t_map **matrix)
 			tmp = *matrix;
 			if (!(*matrix)->left)
 			{
-				free(tmp);
-				tmp = NULL;
 				if (!(*matrix)->down)
 				{
+					free(tmp);
+					tmp = NULL;
 					*matrix = NULL;
 					return ;
 				}
 				*matrix = (*matrix)->down;
+				free(tmp);
+				tmp = NULL;
 				break ;
 			}
 			*matrix = (*matrix)->left;

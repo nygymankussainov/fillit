@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 16:23:21 by deladia           #+#    #+#             */
-/*   Updated: 2019/06/11 16:24:49 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:13:18 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,11 @@ void						add_col(t_map **m);
 void						ft_delete_fig(t_map **map, t_list_fig **list);
 int							insert_fig(t_struct **str);
 int							ft_sqrt_mod	(int nb);
-t_map						*fillmap2(t_map *map, t_map *matrix,
-		int y, int one);
-void						print_matrix_full(t_map	*matrix, int side);
 void						insert_hash(t_map **map, t_map **matrix, int a);
 void						insert_matrix_1(t_map **map, t_map **matrix, int a);
 void						insert_matrix_2(t_map **map, t_map **matrix, int a);
 void						push(t_list_matrix **head, t_map **matrix);
 t_list_matrix				*pop(t_list_matrix **head);
-void						find_one(t_map **matrix, int y, int one);
 void						find_matrix(t_map **matrix, int	x, int y);
 int							delete_row(t_map **matrix, t_map **map,
 		t_list_matrix **stack, int one);
@@ -128,7 +124,6 @@ int							cnt_row_with_letter(t_map *matrix,
 		char letter, int i);
 void						find_row(t_map **matrix, int nbr);
 void						fillmap_2(t_map **map, t_map *matrix);
-void						find_letter(t_map **matrix);
 int							ft_read(int fd, t_struct **str,
 		t_list_matrix **stack);
 void						ft_free(t_map **matrix);
