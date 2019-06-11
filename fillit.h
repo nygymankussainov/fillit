@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 16:23:21 by deladia           #+#    #+#             */
-/*   Updated: 2019/06/08 18:48:29 by deladia          ###   ########.fr       */
+/*   Updated: 2019/06/11 16:24:49 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,6 @@ void						fillmap_2(t_map **map, t_map *matrix);
 void						find_letter(t_map **matrix);
 int							ft_read(int fd, t_struct **str,
 		t_list_matrix **stack);
+void						ft_free(t_map **matrix);
 
 #endif
