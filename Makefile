@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/06/09 16:16:06 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/06/11 16:27:31 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIB = ./$(LIB_FOLDER)
 
 INCLUDES = -I./$(LIB_FOLDER)
 
-SRC = fillit.c create_map.c fillmap.c print_map.c validation.c link_hash.c store_fig.c \
+SRC = fillit.c create_map.c fillmap.c print_map.c validation.c link_hash.c store_fig.c ft_free.c\
 	expand_map.c insert_fig.c fillmap2.c force.c delete_row.c stack.c ft_delete_fig.c insert_matrix.c
 
 OBJ = $(SRC:.c=.o)
