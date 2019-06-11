@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 20:21:31 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/06/09 16:00:02 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/06/11 15:22:31 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,6 @@ void	find_matrix(t_map **matrix, int x, int y)
 		else if ((*matrix)->y < y)
 			*matrix = (*matrix)->right;
 	}
-}
-
-void	print_matrix(t_map *matrix, int side)
-{
-	t_map	*ptr;
-	int		i;
-	int		j;
-
-	i = 1;
-	j = 1;
-	find_matrix(&matrix, 1, 1);
-	ptr = matrix;
-	while (i <= side)
-	{
-		j = 1;
-		while (j <= side)
-		{
-			find_matrix(&matrix, i, j);
-			ptr = matrix;
-			write(1, &ptr->letter, 1);
-			j++;
-		}
-		i++;
-	}
-	write(1, "\n", 1);
 }
 
 void	insert_hash(t_map **map, t_map **matrix, int a)
@@ -100,6 +75,58 @@ int		insert_fig_2(t_struct **str, int x, int key)
 	return (key);
 }
 
+void	ft_free(t_map **matrix)
+{
+	t_map *tmp;
+
+	find_matrix(matrix, 1, 1);
+	while ((*matrix)->up)
+		*matrix = (*matrix)->up;
+	while (*matrix)
+	{
+		if (!(*matrix)->left)
+			while (*matrix)
+			{
+				tmp = *matrix;
+				if (!(*matrix)->right)
+				{
+					if (!(*matrix)->down)
+					{
+						free(tmp);
+						tmp = NULL;
+						*matrix = NULL;
+						return ;
+					}
+					*matrix = (*matrix)->down;
+					break ;
+				}
+				*matrix = (*matrix)->right;
+				free(tmp);
+				tmp = NULL;
+			}
+		if (!(*matrix)->right)
+			while (*matrix)
+			{
+				tmp = *matrix;
+				if (!(*matrix)->left)
+				{
+					if (!(*matrix)->down)
+					{
+						free(tmp);
+						tmp = NULL;
+						*matrix = NULL;
+						return ;
+					}
+					*matrix = (*matrix)->down;
+					break ;
+				}
+				*matrix = (*matrix)->left;
+				free(tmp);
+				tmp = NULL;
+			}
+	}
+}
+
 int		insert_fig(t_struct **str)
 {
 	int		key;
@@ -117,6 +144,9 @@ int		insert_fig(t_struct **str)
 		add_col(&(*str)->map);
 		add_row(&(*str)->map);
 		(*str)->side++;
+		ft_free(&(*str)->matrix);
+		while ((*str)->list->prev)
+			(*str)->list = (*str)->list->prev;
 		insert_fig(str);
 		return ((*str)->side);
 	}

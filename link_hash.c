@@ -6,20 +6,11 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 10:39:59 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/05/22 19:49:03 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/06/11 15:19:29 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void		ft_free(t_fig **fig)
-{
-	while (*fig)
-	{
-		free(*fig);
-		*fig = NULL;
-	}
-}
 
 void		link_hash_plus(t_fig **l1, t_fig **l2)
 {
