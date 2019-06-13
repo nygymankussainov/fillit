@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 16:24:15 by deladia           #+#    #+#             */
-/*   Updated: 2019/06/11 16:43:16 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/06/13 17:42:58 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ int		main(int argc, char **argv)
 		if (ft_read(fd, &str, &stack) < 0)
 		{
 			ft_putstr("error\n");
-			return (-1);
+			exit (0);
 		}
 	}
 	else
 		ft_putstr("usage: ./fillit sample_file\n");
-	return (0);
+	exit (0);
 }

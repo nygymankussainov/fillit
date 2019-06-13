@@ -6,7 +6,7 @@
 #    By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/04 12:58:50 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/05/15 16:32:19 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/06/13 17:43:19 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(NAME): $(OBJECTS)
 	@ranlib $(NAME)
 
 %.o: %.c $(INCLUDES)
-	gcc -Wall -Wextra -Werror -c $<
+	@gcc -Wall -Wextra -Werror -c $<
 
 .PHONY: clean fclean re
 
