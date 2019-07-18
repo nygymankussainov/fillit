@@ -5,7 +5,7 @@ problematic in programming: searching the optimal solution among a huge set of p
 In this particular project, you will have to find a way to assemble a given Tetriminos set altogether 
 in the smallest possible square.
 
-Instruction:
+# Usage
 
 1. make
 2. ./fillit data
