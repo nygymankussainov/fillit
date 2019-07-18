@@ -8,6 +8,6 @@ in the smallest possible square.
 Instruction:
 
 1. make
-2. ./fillit data.txt
+2. ./fillit data
 
-You can find data.txt as an example in the repository. (additional new line after last tetrimino is mandatory)
+You can find file "data" as an example in the repository. (additional new line after last tetrimino is mandatory)
