@@ -10,4 +10,4 @@ Instruction:
 1. make
 2. ./fillit data.txt
 
-You can find data.txt as an example in the repository.
+You can find data.txt as an example in the repository. (additional new line after last tetrimino is mandatory)
