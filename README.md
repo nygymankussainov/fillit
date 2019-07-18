@@ -11,21 +11,3 @@ Instruction:
 2. ./fillit data.txt
 
 You can find data.txt as an example in the repository.
-
-A few examples of valid descriptions of Tetriminos:
-
-...#
-...#
-...#
-...#
-
-...#
-...#
-..##
-....
-
-
-...#
-..##
-...#
-....
