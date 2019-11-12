@@ -6,7 +6,7 @@
 /*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 11:50:12 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/05/13 15:32:28 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:13:57 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int					get_next_line(const int fd, char **line)
 	{
 		buf[list->nbytes] = '\0';
 		list->temp = list->str;
-		list->str = ft_strjoin(list->temp, buf);
+		list->str = ft_strjoin(list->temp, buf, 0, 0);
 		free(list->temp);
 		list->temp = NULL;
 		if (isnewline(&list, &line) == 1)

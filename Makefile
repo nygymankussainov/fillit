@@ -6,45 +6,55 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/08/07 17:28:55 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/11/12 15:09:58 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: clean fclean re
+LOG_NOCOLOR = \033[0m
+LOG_GREEN = \033[32m
 
 NAME = fillit
 
-CC = gcc
+INCLUDES = -I ./ -I ./libft/
 
-CFLAGS = -Wall -Wextra -Werror
+LIBFT = ./libft/
 
-LIB_FOLDER = libft
-
-LIB = ./$(LIB_FOLDER)
-
-INCLUDES = -I./$(LIB_FOLDER)
+LIB_A = ./libft/libft.a
 
 SRC = fillit.c create_map.c fillmap.c print_map.c validation.c link_hash.c store_fig.c ft_free.c \
-	expand_map.c insert_fig.c fillmap2.c force.c delete_row.c stack.c ft_delete_fig.c insert_matrix.c libft/ft_strlen.c
+	expand_map.c insert_fig.c fillmap2.c force.c delete_row.c stack.c ft_delete_fig.c insert_matrix.c
 
-OBJ = $(SRC:.c=.o) libft/ft_strlen.o
+SRCDIR = src
+SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 
-all: $(NAME)
+OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
+OBJDIR = obj
+
+CCFL = -Wall -Wextra -Werror
+
+.PHONY: all clean fclean re obj_dir library
+
+all: obj_dir library $(NAME)
+
+obj_dir:
+	@mkdir -p $(OBJDIR)
+
+library:
+	@make -sC $(LIBFT)
 
 $(NAME): $(OBJ)
-	@make -C $(LIB_FOLDER)
-	$(CC) $(CFLAGS) -L $(LIB) -lft $(INCLUDES) -o $@ $^
+	@gcc $(CCFL) -o $(NAME) $(OBJ) $(LIB_A) $(INCLUDES)
+	@echo "$(LOG_GREEN)Fillit has compiled successfully!$(LOG_NOCOLOR)"
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $< $(CFLAGS) $(INCLUDES)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@gcc $(CCFL) -o $@ -c $< $(INCLUDES)
 
 clean:
-	@make clean -C $(LIB_FOLDER)
-	@/bin/rm -f $(OBJ)
+	@make clean -C $(LIBFT)
+	@/bin/rm -rf $(OBJDIR)
 
-fclean:	clean
-	@make clean
+fclean: clean
+	@make fclean -C $(LIBFT)
 	@/bin/rm -f $(NAME)
-	@make fclean -C $(LIB_FOLDER)
 
-re:	fclean all
+re: fclean all

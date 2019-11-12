@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 15:18:54 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/04/18 13:10:40 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/04/02 16:27:49 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/08/03 22:03:40 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isdigit(int c)
+void	ft_putstr(char const *s)
 {
-	return (c >= '0' && c <= '9');
+	if (!s)
+		return ;
+	write(1, s, ft_strlen(s));
 }

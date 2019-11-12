@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/02 16:27:49 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/04/27 13:02:31 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/04/11 16:20:43 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/06/02 11:05:39 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+int		ft_isascii(int c)
 {
-	if (!s)
-		return ;
-	write(1, s, ft_strlen(s));
+	return (c >= 0 && c <= 127);
 }

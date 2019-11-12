@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_free_two_dim_arr.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/11 14:33:42 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/08/07 17:28:20 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/08/05 17:47:02 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/10/23 16:17:04 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_free_two_dim_arr(char **str)
 {
-	size_t i;
+	int		i;
 
 	i = 0;
-	while (s[i])
+	if (!str)
+		return ;
+	while (str[i])
+	{
+		free(str[i]);
+		str[i] = NULL;
 		i++;
-	return (i);
+	}
+	free(str);
+	str = NULL;
 }

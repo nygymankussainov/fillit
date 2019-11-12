@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 11:37:43 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/04/29 11:25:42 by vhazelnu         ###   ########.fr       */
+/*   Updated: 2019/08/03 18:26:26 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static size_t	ft_iswhitesp(char const *s, size_t i)
-{
-	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-		i++;
-	return (i);
-}
 
 char			*ft_strtrim(char const *s)
 {
@@ -31,7 +24,7 @@ char			*ft_strtrim(char const *s)
 	if (!s)
 		return (NULL);
 	j = ft_strlen(s) - 1;
-	i = ft_iswhitesp(s, i);
+	i = ft_skip_whitesp(s);
 	if (!s[i])
 		return (ft_strnew(0));
 	while (s[j] == ' ' || s[j] == '\t' || s[j] == '\n')

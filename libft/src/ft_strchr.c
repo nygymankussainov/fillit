@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deladia <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 17:20:04 by deladia           #+#    #+#             */
-/*   Updated: 2019/02/02 17:31:02 by deladia          ###   ########.fr       */
+/*   Created: 2019/04/11 17:04:11 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/10/08 14:29:59 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_sqrt(int nb)
-{
-	int i;
+#include "libft.h"
 
-	i = 1;
-	if (nb <= 0)
-	{
-		return (0);
-	}
-	while (i * i < nb)
-	{
-		i++;
-	}
-	if (nb % i == 0)
-	{
-		return (i);
-	}
-	return (0);
+char	*ft_strchr(const char *s, int c)
+{
+	char	b;
+
+	b = (char)c;
+	while (*s && *s != b)
+		s++;
+	if (!*s && *s != b)
+		return (NULL);
+	return ((char *)s);
 }

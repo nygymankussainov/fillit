@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_bzero_null.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/26 20:34:01 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/04/26 20:47:03 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/07/12 12:55:32 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/07/12 12:55:47 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(const char *s1, size_t n)
+void	ft_bzero_null(void *s, size_t n)
 {
-	char	*result;
-	size_t	i;
-	size_t	j;
+	unsigned char	*str;
+	size_t			i;
 
 	i = 0;
-	j = 0;
-	while (s1[i] && i < n)
-		i++;
-	if (!(result = ft_memalloc(i + 1)))
-		return (NULL);
-	while (s1[j] && j < n)
+	str = (unsigned char *)s;
+	while (n > 0)
 	{
-		result[j] = s1[j];
-		j++;
+		str[i] = '\0';
+		i++;
+		n--;
 	}
-	result[j] = '\0';
-	return (result);
 }

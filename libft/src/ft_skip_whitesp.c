@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   ft_skip_whitesp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 15:11:58 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/04/19 15:14:12 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/07/29 22:03:06 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/08/03 18:24:08 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl(char const *s)
+size_t	ft_skip_whitesp(const char *str)
 {
-	if (!s)
-		return ;
-	ft_putstr(s);
-	ft_putchar('\n');
+	int	i;
+
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\n' || str[i] == '\r' ||
+				str[i] == '\t' || str[i] == '\v' || str[i] == '\f'))
+		i++;
+	return (i);
 }

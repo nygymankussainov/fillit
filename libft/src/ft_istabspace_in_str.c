@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_istabspace_in_str.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 12:31:12 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/04/24 19:46:49 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/08/05 16:08:52 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/08/05 16:11:35 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int		ft_istabspace_in_str(char *str)
 {
-	unsigned char	*str;
-	size_t			i;
-
-	i = 0;
-	str = (unsigned char *)s;
-	while (n > 0)
+	while (*str)
 	{
-		str[i] = '\0';
-		i++;
-		n--;
+		if (*str == ' ' || *str == '\t')
+			return (1);
+		str++;
 	}
+	return (0);
 }

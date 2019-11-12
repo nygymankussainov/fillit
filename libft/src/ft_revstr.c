@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_revstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vhazelnu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/09 19:52:45 by vhazelnu          #+#    #+#             */
-/*   Updated: 2019/04/24 20:54:08 by vhazelnu         ###   ########.fr       */
+/*   Created: 2019/06/25 11:09:37 by vhazelnu          #+#    #+#             */
+/*   Updated: 2019/07/31 16:06:22 by vhazelnu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_revstr(char *str)
 {
-	size_t	i;
+	int		i;
+	char	c;
+	char	*result;
 
-	i = 0;
-	while (src[i] && i < len)
+	result = str;
+	i = ft_strlen(str);
+	while (i >= 2)
 	{
-		dst[i] = src[i];
-		i++;
+		c = *str;
+		*str = str[i - 1];
+		str[i - 1] = c;
+		str++;
+		i -= 2;
 	}
-	while (i < len)
-	{
-		dst[i] = '\0';
-		i++;
-	}
-	return (dst);
+	return (result);
 }
