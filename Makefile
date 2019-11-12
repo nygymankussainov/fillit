@@ -6,7 +6,7 @@
 #    By: vhazelnu <vhazelnu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/16 11:34:51 by vhazelnu          #+#    #+#              #
-#    Updated: 2019/06/13 15:47:27 by vhazelnu         ###   ########.fr        #
+#    Updated: 2019/08/07 17:28:55 by vhazelnu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ LIB = ./$(LIB_FOLDER)
 
 INCLUDES = -I./$(LIB_FOLDER)
 
-SRC = fillit.c create_map.c fillmap.c print_map.c validation.c link_hash.c store_fig.c ft_free.c\
-	expand_map.c insert_fig.c fillmap2.c force.c delete_row.c stack.c ft_delete_fig.c insert_matrix.c
+SRC = fillit.c create_map.c fillmap.c print_map.c validation.c link_hash.c store_fig.c ft_free.c \
+	expand_map.c insert_fig.c fillmap2.c force.c delete_row.c stack.c ft_delete_fig.c insert_matrix.c libft/ft_strlen.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o) libft/ft_strlen.o
 
 all: $(NAME)
 
@@ -37,7 +37,7 @@ $(NAME): $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $< $(CFLAGS) $(INCLUDES)
-		
+
 clean:
 	@make clean -C $(LIB_FOLDER)
 	@/bin/rm -f $(OBJ)
