@@ -7,7 +7,7 @@ in the smallest possible square.
 
 # Usage
 
-1. make
-2. ./fillit data
+	make
+	./fillit data
 
 You can find file "data" as an example in the repository. (additional new line after last tetrimino is mandatory)
